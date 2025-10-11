@@ -22,6 +22,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="OutlookVBAConversion.py" />
+    <Compile Include="scripts\device_Control.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Docs\" />
+    <Folder Include="VBA_Sources\" />
+    <Folder Include="scripts\" />
+    <Folder Include="Notebooks\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="Docs\migration_overview.md" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
