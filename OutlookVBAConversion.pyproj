@@ -41,6 +41,7 @@
     <Content Include="Docs\migration_overview.md" />
     <Content Include="Docs\retry_logic.md" />
     <Content Include="Docs\vba_to_python_map.md" />
+    <Content Include="Notebooks\devcon_test.ipynb" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
