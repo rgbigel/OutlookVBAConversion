@@ -22,7 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="OutlookVBAConversion.py" />
-    <Compile Include="scripts\device_Control.py">
+    <Compile Include="scripts\device_control.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
