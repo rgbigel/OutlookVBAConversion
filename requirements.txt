@@ -1,0 +1,11 @@
+black>=24.3.0
+pylint>=3.0.0
+mypy>=1.8.0
+tomlkit>=0.12.3
+mccabe>=0.7.0
+isort>=5.12.0
+dill>=0.3.7
+astroid>=3.0.0
+pywin32>=306
+typing-extensions>=4.10.0
+platformdirs>=3.0.0

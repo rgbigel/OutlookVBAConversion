@@ -1,0 +1,29 @@
+{
+  // Python interpreter
+  "python.defaultInterpreterPath": "D:\\Tools\\Python313\\python.exe",
+
+  // Auto-formatting
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+
+  // Linting and type checking
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.analysis.typeCheckingMode": "basic",
+
+  // Git integration
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+
+  // File exclusions (optional)
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/conversion_log.txt": true
+  },
+
+  // Terminal behavior
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "terminal.integrated.cwd": "${workspaceFolder}"
+}
