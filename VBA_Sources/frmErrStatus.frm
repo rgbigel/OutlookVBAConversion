@@ -1,4 +1,4 @@
-VERSION 5.00
+ï»¿VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmErrStatus 
    Caption         =   "Error and Debug Status"
    ClientHeight    =   10125
@@ -55,7 +55,7 @@ End Sub                                          ' frmErrStatus.Activate
 
 '---------------------------------------------------------------------------------------
 ' Method : ReEvaluate
-' Author : Rolf-Günther Bercht
+' Author : Rolf-GÃ¼nther Bercht
 ' Date   : 20211108@11_47
 ' Purpose: When in debug window, evaluate state of Settings, or if Reverse: global values
 '---------------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ Static Recursive As Boolean
     fModifications.Enabled = True               ' with actions now
     fModifications = True                       ' will Call fModifications_Change
     
-    fLastErrExplanations = "Werte für Debugoptionen aus frmErrStatus ausgelesen " & Time
+    fLastErrExplanations = "Werte fÃ¼r Debugoptionen aus frmErrStatus ausgelesen " & Time
     ChangeAssignReverse = False
     Call N_Suppress(Pop, zKey)                  ' ShutupMode restored
     Recursive = False
@@ -906,7 +906,7 @@ End Sub                                          ' frmErrStatus.UserForm_Initial
 
 '---------------------------------------------------------------------------------------
 ' Method : Sub fBeginTermination
-' Author : Rolf-Günther Bercht
+' Author : Rolf-GÃ¼nther Bercht
 ' Date   : 20211108@11_47
 ' Purpose: Ask User about Termination request (may abort Termination)
 '---------------------------------------------------------------------------------------

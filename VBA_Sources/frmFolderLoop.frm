@@ -1,4 +1,4 @@
-VERSION 5.00
+ï»¿VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmFolderLoop 
    Caption         =   "Ordner-Iteration"
    ClientHeight    =   7305
@@ -176,7 +176,7 @@ Dim toDay As Date
     ShowError.Text = vbNullString
     toDay = CDate(Left(Now(), 10))
     Select Case Datumsbedingung.Text
-    Case "keine Datumsbeschränkung"
+    Case "keine DatumsbeschrÃ¤nkung"
     Case "heute"
         CutOffDate = DateAdd("d", -0, toDay)
     Case "ab gestern"
@@ -189,7 +189,7 @@ Dim toDay As Date
         If IsDate(Datumsbedingung) Then
             CutOffDate = CDate(Datumsbedingung)
         Else
-            ShowError.Text = "Unzulässige Datumsbedingung: " _
+            ShowError.Text = "UnzulÃ¤ssige Datumsbedingung: " _
                            & Datumsbedingung
         End If
     End Select
@@ -332,13 +332,13 @@ setMode:
     End Select
     Select Case ActionID
     Case 0                                       ' use default
-        ActionID = atPostEingangsbearbeitungdurchführen
+        ActionID = atPostEingangsbearbeitungdurchfÃ¼hren
         ' after FindingallDeferred...
         If LF_UsrRqAtionId = atFindealleDeferredSuchordner Then
             OptionButton7 = True
         Else
             OptionButton3 = True
-            LF_UsrRqAtionId = atPostEingangsbearbeitungdurchführen
+            LF_UsrRqAtionId = atPostEingangsbearbeitungdurchfÃ¼hren
         End If
     Case 1
         OptionButton1 = True
@@ -463,7 +463,7 @@ End Sub                                          ' frmFolderLoop.OptionButton2_C
 ' Purpose:
 '---------------------------------------------------------------------------------------
 Private Sub OptionButton3_Click()
-    LF_UsrRqAtionId = atPostEingangsbearbeitungdurchführen
+    LF_UsrRqAtionId = atPostEingangsbearbeitungdurchfÃ¼hren
     If SelectorMode = 99 Then
         SelectorMode = 1
     End If
@@ -481,7 +481,7 @@ End Sub                                          ' frmFolderLoop.OptionButton3_C
 ' Purpose:
 '---------------------------------------------------------------------------------------
 Private Sub OptionButton4_Click()
-    LF_UsrRqAtionId = atDoppelteItemslöschen
+    LF_UsrRqAtionId = atDoppelteItemslÃ¶schen
     If SelectorMode = 99 Then
         SelectorMode = 1
     End If
@@ -506,7 +506,7 @@ End Sub                                          ' frmFolderLoop.OptionButton4_C
 ' Purpose:
 '---------------------------------------------------------------------------------------
 Private Sub OptionButton5_Click()
-    LF_UsrRqAtionId = atNormalrepräsentationerzwingen
+    LF_UsrRqAtionId = atNormalreprÃ¤sentationerzwingen
     If SelectorMode = 99 Then
         SelectorMode = 1
     End If
@@ -526,9 +526,9 @@ End Sub                                          ' frmFolderLoop.OptionButton5_C
 ' Purpose:
 '---------------------------------------------------------------------------------------
 Private Sub OptionButton6_Click()
-    LF_UsrRqAtionId = atOrdnerinhalteZusammenführen
+    LF_UsrRqAtionId = atOrdnerinhalteZusammenfÃ¼hren
     PickTopFolder = False
-    SelectorMode = 1                             ' Es macht nur Sinn ganze Ordner zu wählen
+    SelectorMode = 1                             ' Es macht nur Sinn ganze Ordner zu wÃ¤hlen
     CategoryProcessing.Visible = False
     xDeferExcel = True
     XlDeferred = xDeferExcel
@@ -567,7 +567,7 @@ End Sub                                          ' frmFolderLoop.OptionButton7_C
 ' Purpose:
 '---------------------------------------------------------------------------------------
 Private Sub OptionButton8_Click()
-    LF_UsrRqAtionId = atBearbeiteAlleÜbereinstimmungenzueinerSuche
+    LF_UsrRqAtionId = atBearbeiteAlleÃœbereinstimmungenzueinerSuche
     PickTopFolder = True
     If SelectorMode = 99 Then
         SelectorMode = 1

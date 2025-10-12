@@ -1,4 +1,4 @@
-VERSION 5.00
+﻿VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmMaintenance 
    Caption         =   "Wartung"
    ClientHeight    =   7140
@@ -46,7 +46,7 @@ End Sub                                          ' frmMaintenance.Cancel_Click
 Private Sub OK_Click()
     Select Case someAction
     Case 0
-        If MsgBox("Eine Aktion muss ausgew�hlt werden.", vbOKCancel, _
+        If MsgBox("Eine Aktion muss ausgewählt werden.", vbOKCancel, _
                   "Auswahl einer Aktion steht aus") _
         = vbCancel Then
             Call UserForm_Terminate

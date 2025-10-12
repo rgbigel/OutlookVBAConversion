@@ -1,4 +1,4 @@
-VERSION 5.00
+ï»¿VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmNoteMgr 
    Caption         =   "frmNachverfolgung"
    ClientHeight    =   5085
@@ -24,8 +24,8 @@ Option Explicit
 Private Sub ButtonStatus()
 ' cmdShow nur aktivieren, wenn Listenfeldelement markiert
     cmdShow.Enabled = lstElemente.ListIndex > -1
-    ' cmdLöschen nur aktivieren, wenn Listenfeldelement markiert
-    cmdLöschen.Enabled = lstElemente.ListIndex > -1
+    ' cmdLÃ¶schen nur aktivieren, wenn Listenfeldelement markiert
+    cmdLÃ¶schen.Enabled = lstElemente.ListIndex > -1
 End Sub                                          ' frmNoteMgr.ButtonStatus
 
 '---------------------------------------------------------------------------------------
@@ -39,26 +39,26 @@ Private Sub cmdCancel_Click()
 End Sub                                          ' frmNoteMgr.cmdCancel_Click
 
 '---------------------------------------------------------------------------------------
-' Method : Sub cmdLöschen_Click
+' Method : Sub cmdLÃ¶schen_Click
 ' Author : rgbig
 ' Date   : 20211108@11_47
 ' Purpose:
 '---------------------------------------------------------------------------------------
-Private Sub cmdLöschen_Click()
+Private Sub cmdLÃ¶schen_Click()
 Dim strEntryID As String
     
     With lstElemente
         ' Entry-ID aus unsichtbarer Listenfeldspalte lesen
         strEntryID = .List(.ListIndex, 3)
-        ' Aktuellen Listenfeldeintrag löschen
+        ' Aktuellen Listenfeldeintrag lÃ¶schen
         .RemoveItem .ListIndex
     End With
-    ' Elementeintrag aus Registry löschen (Schlüsselname = Entry-ID)
+    ' Elementeintrag aus Registry lÃ¶schen (SchlÃ¼sselname = Entry-ID)
     DeleteSetting NoteMgr.AppName, "Elemente", strEntryID
     
-    ' Prozedur für Schaltflächenstatus aufrufen
+    ' Prozedur fÃ¼r SchaltflÃ¤chenstatus aufrufen
     Call ButtonStatus
-End Sub                                          ' frmNoteMgr.cmdLöschen_Click
+End Sub                                          ' frmNoteMgr.cmdLÃ¶schen_Click
 
 '---------------------------------------------------------------------------------------
 ' Method : Sub cmdShow_Click
@@ -72,7 +72,7 @@ Dim fnObjItem As Object
     
     ' Entry-ID aus unsichtbarer Listenfeldspalte lesen
     strEntryID = lstElemente.List(lstElemente.ListIndex, 3)
-    ' Verweis auf Outlook-Element über Entry-ID holen
+    ' Verweis auf Outlook-Element Ã¼ber Entry-ID holen
     
     aBugTxt = "Get Namespace From EntryId"
     Call Try("Die angegebene Nachricht kann nicht gefunden werden.")
@@ -119,12 +119,12 @@ Dim fnObjItem As Object
         ' ... Meldung anzeigen und...
         MsgBox "Es sind derzeit keine Elemente zur Nachverfolgung gekennzeichnet.", _
                vbInformation, NoteMgr.AppName
-        ' ... Dialogfeld vor dem Sichtbarwerden schließen
+        ' ... Dialogfeld vor dem Sichtbarwerden schlieÃŸen
         End
     End If
     
     ' Fenstertiteltext festlegen
-    Me.Caption = NoteMgr.AppName & " - © 2004, Ralf Nebelo"
+    Me.Caption = NoteMgr.AppName & " - Â© 2004, Ralf Nebelo"
     
     ' Listenfeld konfigurieren
     With lstElemente
@@ -138,35 +138,35 @@ Dim fnObjItem As Object
             ' Entry-ID aus Dimension 0 des Elements auslesen
             strEntryID = vntWerte(intI - 1, 0)
             
-            ' Verweis auf Outlook-Element über Entry-ID holen
+            ' Verweis auf Outlook-Element Ã¼ber Entry-ID holen
             Set fnObjItem = aNameSpace.GetItemFromID(strEntryID)
             ' Wenn Outlook-Element vorhanden ist, dann...
             If Not fnObjItem Is Nothing Then
                 With lstElemente
-                    ' ... Betreff in erste Spalte des Listenfelds übernehmen
+                    ' ... Betreff in erste Spalte des Listenfelds Ã¼bernehmen
                     .addItem fnObjItem.Subject
-                    ' Absender in zweite Spalte übernehmen
+                    ' Absender in zweite Spalte Ã¼bernehmen
                     .List(.ListCount - 1, 1) = fnObjItem.SenderName
-                    ' Datum der Elementerstellung in dritte Spalte übernehmen
+                    ' Datum der Elementerstellung in dritte Spalte Ã¼bernehmen
                     .List(.ListCount - 1, 2) = Format(fnObjItem.CreationTime, _
                                                       "Short Date")
-                    ' Entry-ID in unsichtbare Spalte übernehmen
+                    ' Entry-ID in unsichtbare Spalte Ã¼bernehmen
                     .List(.ListCount - 1, 3) = strEntryID
                 End With
                 ' Wenn Element nicht mehr vorhanden ist, dann...
             Else
-                ' ... Elementeintrag aus Registry löschen (Schlüsselname = Entry-ID)
+                ' ... Elementeintrag aus Registry lÃ¶schen (SchlÃ¼sselname = Entry-ID)
                 DeleteSetting NoteMgr.AppName, "Elemente", strEntryID
             End If
             
-            ' Verweis auf Outlook-Element löschen
+            ' Verweis auf Outlook-Element lÃ¶schen
             Set fnObjItem = Nothing
         Next
         
         ' Letztes Element markieren
         .ListIndex = .ListCount - 1
     End With
-    ' Prozedur für Schaltflächenstatus aufrufen
+    ' Prozedur fÃ¼r SchaltflÃ¤chenstatus aufrufen
     Call ButtonStatus
 
 FuncExit:

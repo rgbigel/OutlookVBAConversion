@@ -1,6 +1,6 @@
-VERSION 5.00
+ï»¿VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmDelConfirm 
-   Caption         =   "Entscheidung über das Löschen treffen"
+   Caption         =   "Entscheidung Ã¼ber das LÃ¶schen treffen"
    ClientHeight    =   9450.001
    ClientLeft      =   45
    ClientTop       =   435
@@ -78,7 +78,7 @@ End Sub                                          ' frmDelConfirm.Go_Click
 ' Date   : 20211108@11_47
 ' Purpose:
 '---------------------------------------------------------------------------------------
-Private Sub Label3_Click()                       ' "Löschliste bisher" ganz unten
+Private Sub Label3_Click()                       ' "LÃ¶schliste bisher" ganz unten
     DeleteNow = Not DeleteNow
     If DeleteNow Then
         Label3.BackColor = 0
@@ -97,10 +97,10 @@ Private Sub LPAskEveryFolder_Click()
     AskEveryFolder = LPAskEveryFolder
     If AskEveryFolder Then
         LPWantConfirmationThisFolder.Caption = _
-                                             "Löschen nur nach Einzelbestätigung," _
+                                             "LÃ¶schen nur nach EinzelbestÃ¤tigung," _
                                            & vbCrLf & "auch wenn identisch"
     Else
-        LPWantConfirmationThisFolder.Caption = "ohne Rückfrage:" _
+        LPWantConfirmationThisFolder.Caption = "ohne RÃ¼ckfrage:" _
                                              & vbCrLf & killType
     End If
 End Sub                                          ' frmDelConfirm.LPAskEveryFolder_Click
@@ -234,19 +234,19 @@ Dim zErr As cErr
     LPWantConfirmationThisFolder = WantConfirmationThisFolder
     If AskEveryFolder Then
         LPWantConfirmationThisFolder.Caption = _
-                                             "Löschen nur nach Einzelbestätigung, auch wenn identisch:" _
+                                             "LÃ¶schen nur nach EinzelbestÃ¤tigung, auch wenn identisch:" _
                                            & vbCrLf & killType
     Else
-        LPWantConfirmationThisFolder.Caption = "ohne Rückfrage:" _
+        LPWantConfirmationThisFolder.Caption = "ohne RÃ¼ckfrage:" _
                                              & vbCrLf & killType
     End If
     LPAskEveryFolder = AskEveryFolder
     LPDiffs = Diffs
     LPmsg.Text = Message
-    If LenB(LoeschbestätigungCaption) > 0 Then
-        Me.Caption = LoeschbestätigungCaption
+    If LenB(LoeschbestÃ¤tigungCaption) > 0 Then
+        Me.Caption = LoeschbestÃ¤tigungCaption
     End If
-    Me.LBlöliste = Mid(LöListe, 2)
+    Me.LBlÃ¶liste = Mid(LÃ¶Liste, 2)
     Me.Go.Default = True
     Me.No.Default = False
     Me.Cancel.Default = False
@@ -260,9 +260,9 @@ Dim zErr As cErr
     End If
     Me.SucheBeenden = False
     S1.Enabled = True
-    S1.Value = False                             ' wäre schöner, wenn wir nicht modal schaffen könnten
+    S1.Value = False                             ' wÃ¤re schÃ¶ner, wenn wir nicht modal schaffen kÃ¶nnten
     S2.Enabled = True
-    S2.Value = False                             ' dann könnten wir sehen, was schon aktiv ist....
+    S2.Value = False                             ' dann kÃ¶nnten wir sehen, was schon aktiv ist....
     If WindowSetForeground(LBF.Caption, FWP_LBF_Hdl) Then
         Debug.Print Quote1(Trim(LBF.Caption)) _
       & "  wird als oberstes Fenster angezeigt."

@@ -1,6 +1,6 @@
-VERSION 5.00
+ï»¿VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmMacroSelRun 
-   Caption         =   "Liste verfügbarer Macros"
+   Caption         =   "Liste verfÃ¼gbarer Macros"
    ClientHeight    =   7500
    ClientLeft      =   45
    ClientTop       =   435
@@ -123,7 +123,7 @@ End Sub                                          ' frmMacroSelRun.UserForm_Initi
 ' Purpose:
 '---------------------------------------------------------------------------------------
 Private Sub LPMacroListe_Change()
-    Debug.Print "Aktuelle Wahl zur Ausführung: " _
+    Debug.Print "Aktuelle Wahl zur AusfÃ¼hrung: " _
               & LPMacroListe.Value & " Index=" & LPMacroListe.ListIndex
 End Sub                                          ' frmMacroSelRun.LPMacroListe_Change
 

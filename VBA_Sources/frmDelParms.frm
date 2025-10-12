@@ -1,6 +1,6 @@
-VERSION 5.00
+ï»¿VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmDelParms 
-   Caption         =   "Parameter für das Vergleichen/Löschen von Doubletten"
+   Caption         =   "Parameter fÃ¼r das Vergleichen/LÃ¶schen von Doubletten"
    ClientHeight    =   6345
    ClientLeft      =   45
    ClientTop       =   435
@@ -44,7 +44,7 @@ Dim toDay As Date
     LPmsg.Caption = vbNullString
     toDay = CDate(Left(Now(), 10))
     Select Case Datumsbedingung.Text
-    Case "keine Datumsbeschränkung"
+    Case "keine DatumsbeschrÃ¤nkung"
     Case "heute"
         CutOffDate = DateAdd("d", -0, toDay)
     Case "ab gestern"
@@ -57,7 +57,7 @@ Dim toDay As Date
         If IsDate(Datumsbedingung) Then
             CutOffDate = CDate(Datumsbedingung)
         Else
-            LPmsg.Caption = "Unzulässige Datumsbedingung: " _
+            LPmsg.Caption = "UnzulÃ¤ssige Datumsbedingung: " _
                           & Datumsbedingung
         End If
     End Select
@@ -113,10 +113,10 @@ Private Sub LPAskEveryFolder_Click()
     AskEveryFolder = LPAskEveryFolder
     If AskEveryFolder Then
         LPWantConfirmationThisFolder.Caption = _
-                                             "Löschen nur nach Einzelbestätigung, auch wenn identisch:" _
+                                             "LÃ¶schen nur nach EinzelbestÃ¤tigung, auch wenn identisch:" _
                                            & vbCrLf & killType
     Else
-        LPWantConfirmationThisFolder.Caption = "ohne Rückfrage:" _
+        LPWantConfirmationThisFolder.Caption = "ohne RÃ¼ckfrage:" _
                                              & vbCrLf & killType
     End If
 End Sub                                          ' frmDelParms.LPAskEveryFolder_Click
@@ -236,7 +236,7 @@ Private Sub SelektionModifizieren_Click()
     Cancel = frmSelParms.Cancel
     bDebugStop = frmSelParms.bDebugStop
     If Not sRules Is Nothing Then
-        LPmsg = "Auswahlkriterien geändert, sind nun " _
+        LPmsg = "Auswahlkriterien geÃ¤ndert, sind nun " _
               & sRules.clsObligMatches.aRuleString
     End If
     Go.SetFocus
@@ -309,10 +309,10 @@ Dim zErr As cErr
     
     If AskEveryFolder Then
         LPWantConfirmationThisFolder.Caption = _
-                                             "Löschen nur nach Einzelbestätigung, auch wenn identisch:" _
+                                             "LÃ¶schen nur nach EinzelbestÃ¤tigung, auch wenn identisch:" _
                                            & vbCrLf & killType
     Else
-        LPWantConfirmationThisFolder.Caption = "ohne Rückfrage:" _
+        LPWantConfirmationThisFolder.Caption = "ohne RÃ¼ckfrage:" _
                                              & vbCrLf & killType
     End If
     LPSaveAttachments = SaveAttachments
