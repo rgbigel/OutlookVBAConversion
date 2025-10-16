@@ -1,27 +1,34 @@
 import os
 import re
+import tkinter as tk  # Added for .frm conversion
+import argparse
+
+excluded = {"BugHelp", "VbaProject.OTM", "Y_Errlf"}
+def is_excluded(file):
+    name = os.path.splitext(file)[0]
+    return name in excluded or name.startswith("ErrEx")
 
 def find_vba_files(source_dir):
-    """
-    Recursively find all .bas, .cls, and .frm files in the given directory.
-    """
     vba_files = []
     for root, _, files in os.walk(source_dir):
         for file in files:
-            if file.endswith((".bas", ".cls", ".frm")):
+            if file.endswith((".bas", ".cls", ".frm")) and not is_excluded(file):
                 vba_files.append(os.path.join(root, file))
     return vba_files
 
 def convert_bas_module(lines):
-    """
-    Convert .bas module lines to Python.
-    """
     py_lines = []
     for line in lines:
         stripped = line.strip()
         if stripped.startswith("Attribute") or stripped == "":
             continue
-        if stripped.startswith(("Public", "Private")):
+        if re.search(r'For\s+\w+\s*=\s*LBound\((\w+)\)\s+To\s+UBound\(\1\)', stripped):
+            array_name = re.search(r'LBound\((\w+)\)', stripped).group(1)
+            py_lines.append(f"# originally: {stripped}")
+            py_lines.append(f"# consider replacing with: for i in range(len({array_name})):")
+        elif stripped.startswith(("Public", "Private")):
+            visibility = "Public" if "Public" in stripped else "Private"
+            py_lines.append(f"# originally {visibility}")
             func = re.sub(r'\b(Public|Private)\b', 'def', stripped)
             func = re.sub(r'As\s+\w+', '', func)
             py_lines.append(func)
@@ -30,15 +37,14 @@ def convert_bas_module(lines):
     return py_lines
 
 def convert_cls_module(lines, module_name):
-    """
-    Convert .cls class module lines to Python class.
-    """
     py_lines = [f"class {module_name}:", "    def __init__(self):", "        pass\n"]
     for line in lines:
         stripped = line.strip()
         if stripped.startswith("Attribute") or stripped == "":
             continue
         if stripped.startswith(("Public", "Private")):
+            visibility = "Public" if "Public" in stripped else "Private"
+            py_lines.append(f"    # originally {visibility}")
             func = re.sub(r'\b(Public|Private)\b', 'def', stripped)
             func = re.sub(r'As\s+\w+', '', func)
             py_lines.append(f"    {func}")
@@ -47,10 +53,7 @@ def convert_cls_module(lines, module_name):
     return py_lines
 
 def convert_frm_module(lines, module_name):
-    """
-    Convert .frm form module lines to Python tkinter stub.
-    """
-    py_lines = [f"class {module_name}(tk.Tk):", "    def __init__(self):", "        super().__init__()", "        self.title(\"{0}\")".format(module_name), "        # TODO: Add widgets\n"]
+    py_lines = [f"class {module_name}(tk.Tk):", "    def __init__(self):", f"        super().__init__()", f"        self.title(\"{module_name}\")", "        # TODO: Add widgets\n"]
     for line in lines:
         stripped = line.strip()
         if stripped.startswith("Begin"):
@@ -60,6 +63,8 @@ def convert_frm_module(lines, module_name):
         elif stripped.startswith(("Caption", "Name", "Text", "Value")):
             py_lines.append(f"        # {line}")
         elif stripped.startswith(("Public", "Private", "Sub", "Function")):
+            visibility = "Public" if "Public" in stripped else "Private"
+            py_lines.append(f"    # originally {visibility}")
             func = re.sub(r'\b(Public|Private|Sub|Function)\b', 'def', stripped)
             func = re.sub(r'As\s+\w+', '', func)
             py_lines.append(f"    {func}")
@@ -68,9 +73,6 @@ def convert_frm_module(lines, module_name):
     return py_lines
 
 def convert_vba_to_python(vba_code, filename):
-    """
-    Dispatch conversion based on file extension.
-    """
     lines = vba_code.splitlines()
     module_name = os.path.splitext(os.path.basename(filename))[0]
     ext = os.path.splitext(filename)[1].lower()
@@ -85,9 +87,6 @@ def convert_vba_to_python(vba_code, filename):
         return "# Unsupported file type"
 
 def convert_code(source_dir, output_dir):
-    """
-    Convert all eligible VBA files (.bas, .cls, .frm) from source_dir to Python scripts in output_dir.
-    """
     os.makedirs(output_dir, exist_ok=True)
     vba_files = find_vba_files(source_dir)
 
@@ -110,8 +109,12 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Convert VBA .bas, .cls, and .frm files to Python stubs.")
-    parser.add_argument("source_dir", help="Directory containing VBA source files")
-    parser.add_argument("output_dir", help="Directory to write converted Python files")
+    parser.add_argument("source_dir", nargs="?", default="VBA_Source", help="Directory containing VBA source files")
+    parser.add_argument("output_dir", nargs="?", default="Converted_Python", help="Directory to write converted Python files")
 
     args = parser.parse_args()
+
+    print(f"Using source_dir: {args.source_dir}")
+    print(f"Using output_dir: {args.output_dir}")
+
     convert_code(args.source_dir, args.output_dir)
