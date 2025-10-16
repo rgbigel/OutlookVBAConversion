@@ -123,8 +123,13 @@ def convert_code(source_dir, output_dir):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert VBA .bas, .cls, and .frm files to Python stubs.")
-    parser.add_argument("source_dir", nargs="?", default="VBA_Source", help="Directory containing VBA source files")
-    parser.add_argument("output_dir", nargs="?", default="Converted_Python", help="Directory to write converted Python files")
+    cwd = os.getcwd()
+    default_source = os.path.join(cwd, "VBA_Source")
+    default_output = os.path.join(cwd, "Converted_Python")
+
+    parser.add_argument("source_dir", nargs="?", default=default_source, help="Directory containing VBA source files")
+    parser.add_argument("output_dir", nargs="?", default=default_output, help="Directory to write converted Python files")
+
 
     args = parser.parse_args()
 
